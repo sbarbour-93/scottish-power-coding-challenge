@@ -2,7 +2,7 @@ package com.scottbarbour.projects.di
 
 import com.scottbarbour.projects.networking.AlbumsService
 import com.scottbarbour.projects.ui.albums.AlbumListViewModel
-import com.scottbarbour.projects.ui.albums.AlbumsRepository
+import com.scottbarbour.projects.repositories.albums.AlbumsRepository
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module

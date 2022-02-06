@@ -6,10 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.scottbarbour.projects.model.Album
 import com.scottbarbour.projects.networking.NetworkResult
+import com.scottbarbour.projects.repositories.albums.AlbumsRepository
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class AlbumListViewModel(private val repository: AlbumsRepository) : ViewModel() {
+class AlbumListViewModel(private val repository: AlbumsRepository,
+                         private val coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO) : ViewModel() {
 
     private val _albumList: MutableLiveData<List<Album>> = MutableLiveData(emptyList())
     val albumList: LiveData<List<Album>> = _albumList
@@ -22,13 +25,13 @@ class AlbumListViewModel(private val repository: AlbumsRepository) : ViewModel()
 
 
     init {
-        fetchListOfAlbums()
+        refreshAlbumList()
     }
 
     private fun fetchListOfAlbums() {
         _isDownloading.postValue(true)
         _errorOccurred.postValue(false)
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(coroutineDispatcher) {
             when (val response = repository.downloadListOfAlbums()) {
                 is NetworkResult.Success -> {
                     _albumList.postValue(response.data)
