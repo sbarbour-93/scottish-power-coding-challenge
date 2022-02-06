@@ -1,16 +1,24 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.ScottishPowerAlbums" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
+    <style name="Theme.ScottishPowerAlbums" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="colorPrimary">@color/scottish_power_green</item>
+        <item name="colorPrimaryVariant">@color/scottish_power_green_variant</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+
+        <item name="colorSecondary">@color/scottish_power_blue</item>
+        <item name="colorSecondaryVariant">@color/scottish_power_blue_variant</item>
+        <item name="colorOnSecondary">@android:color/white</item>
+
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+
+        <!-- Toolbar styling -->
+        <item name="toolbarStyle">@style/MyThemeOverlay_Toolbar</item>
+        <item name="actionOverflowButtonStyle">@style/MyThemeOverlay_OverflowButtonStyle</item>
+    </style>
+
+    <style name="MyThemeOverlay_Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary"/>
+    <style name="MyThemeOverlay_OverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">@android:color/white</item>
     </style>
 </resources>

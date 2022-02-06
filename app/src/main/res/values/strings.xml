@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Scottish Power Albums</string>
+    <string name="menu_refresh">Refresh Album List</string>
 </resources>
