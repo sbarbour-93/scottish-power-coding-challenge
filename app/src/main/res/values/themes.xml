@@ -13,12 +13,29 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
 
         <!-- Toolbar styling -->
-        <item name="toolbarStyle">@style/MyThemeOverlay_Toolbar</item>
-        <item name="actionOverflowButtonStyle">@style/MyThemeOverlay_OverflowButtonStyle</item>
+        <item name="toolbarStyle">@style/MyThemeOverlay.App.Toolbar</item>
+        <item name="actionOverflowButtonStyle">@style/MyThemeOverlay.App.OverflowButtonStyle</item>
+
+        <!-- Progress spinner styling -->
+        <item name="circularProgressIndicatorStyle">
+            @style/Widget.App.CircularProgressIndicator
+        </item>
     </style>
 
-    <style name="MyThemeOverlay_Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary"/>
-    <style name="MyThemeOverlay_OverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
+    <style name="MyThemeOverlay.App.Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary" />
+
+    <style name="MyThemeOverlay.App.OverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
         <item name="android:tint">@android:color/white</item>
     </style>
+
+    <style name="Widget.App.CircularProgressIndicator" parent="Widget.MaterialComponents.CircularProgressIndicator">
+        <item name="materialThemeOverlay">@style/MyThemeOverlay.App.CircularProgressIndicator</item>
+        <item name="trackThickness">@dimen/circular_progress_indicator_track_thickness</item>
+    </style>
+
+    <style name="MyThemeOverlay.App.CircularProgressIndicator" parent="">
+        <item name="colorPrimary">@color/scottish_power_blue</item>
+    </style>
+
+
 </resources>

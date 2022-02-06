@@ -28,5 +28,5 @@ val myKoinModules = module {
     viewModel { AlbumListViewModel(get()) }
 
     // Repositories //
-    factory { AlbumsRepository() }
+    factory { AlbumsRepository(get()) }
 }

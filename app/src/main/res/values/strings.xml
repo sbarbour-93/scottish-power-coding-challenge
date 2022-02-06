@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Scottish Power Albums</string>
     <string name="menu_refresh">Refresh Album List</string>
+    <string name="album_download_default_error_message">An error has occurred whilst downloading your album list</string>
+    <string name="retry">Retry</string>
+    <string name="accessibility_downloading_list_of_albums">Please wait. We\'re downloading a list of albums for you.</string>
+    <string name="album_list_downloading_default_message">Downloading album list…</string>
 </resources>

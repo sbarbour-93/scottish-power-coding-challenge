@@ -84,4 +84,8 @@ dependencies {
     // MockK for unit test mocking
     def mock_version = "1.12.2"
     testImplementation "io.mockk:mockk:$mock_version"
+
+    // Lottie for animations
+    def lottie_version = "4.2.1"
+    implementation "com.airbnb.android:lottie:$lottie_version"
 }

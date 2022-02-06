@@ -1,7 +1,6 @@
 package com.scottbarbour.projects.networking
 
 import com.scottbarbour.projects.model.Album
-import retrofit2.Call
 import retrofit2.http.GET
 
 interface AlbumsService {
@@ -10,5 +9,5 @@ interface AlbumsService {
     }
 
     @GET("/albums")
-    fun  getListOfAlbums() : Call<List<Album>>
+    suspend fun getListOfAlbums() : List<Album>
 }
