@@ -45,6 +45,11 @@ class AlbumListViewModelTest : KoinTest {
 
     private lateinit var viewModel: AlbumListViewModel
     private lateinit var repository: AlbumsRepository
+    private val mockAlbumList = listOf(
+        Album(1, 1, "Californication"),
+        Album(2, 1, "No More Idols"),
+        Album(3, 1, "Hotel California")
+    )
 
     @Test
     fun `when view model constructed the API call to fetch list of albums is called`() {
@@ -69,12 +74,6 @@ class AlbumListViewModelTest : KoinTest {
     fun `view model album list updated when data fetched successfully via repository`() =
         runBlockingTest {
 
-            val mockAlbumList = listOf(
-                Album(1, 1, "Californication"),
-                Album(2, 1, "No More Idols"),
-                Album(3, 1, "Hotel California")
-            )
-
             val mockResponse = NetworkResult.Success(mockAlbumList)
 
             repository = declareMock()
@@ -86,10 +85,23 @@ class AlbumListViewModelTest : KoinTest {
             viewModel.refreshAlbumList()
 
             assertFalse(viewModel.albumList.value!!.isEmpty())
-            assertEquals(viewModel.albumList.value!![0], mockAlbumList[0])
-            assertEquals(viewModel.albumList.value!![1], mockAlbumList[1])
-            assertEquals(viewModel.albumList.value!![2], mockAlbumList[2])
+            assertTrue(viewModel.albumList.value!!.contains(mockAlbumList[0]))
+            assertTrue(viewModel.albumList.value!!.contains(mockAlbumList[1]))
+            assertTrue(viewModel.albumList.value!!.contains(mockAlbumList[2]))
         }
+
+    @Test
+    fun `test albums sorted by title`() {
+
+        viewModel = get()
+        assertNotNull(viewModel)
+
+        val result = viewModel.sortAlbumsByTitle(mockAlbumList)
+
+        assertEquals(result[0].title, "Californication")
+        assertEquals(result[1].title, "Hotel California")
+        assertEquals(result[2].title, "No More Idols")
+    }
 
     @After
     fun tearDown() {

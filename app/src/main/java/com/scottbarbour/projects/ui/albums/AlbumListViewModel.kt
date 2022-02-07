@@ -1,5 +1,6 @@
 package com.scottbarbour.projects.ui.albums
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -34,7 +35,8 @@ class AlbumListViewModel(private val repository: AlbumsRepository,
         viewModelScope.launch(coroutineDispatcher) {
             when (val response = repository.downloadListOfAlbums()) {
                 is NetworkResult.Success -> {
-                    _albumList.postValue(response.data)
+                    val sortedAlbumList = sortAlbumsByTitle(response.data)
+                    _albumList.postValue(sortedAlbumList)
                 }
                 is NetworkResult.Error -> {
                     _albumList.postValue(emptyList())
@@ -44,6 +46,9 @@ class AlbumListViewModel(private val repository: AlbumsRepository,
             _isDownloading.postValue(false)
         }
     }
+
+    @VisibleForTesting
+    fun sortAlbumsByTitle(unsortedList: List<Album>) = unsortedList.sortedBy { album -> album.title }
 
     fun refreshAlbumList() {
         fetchListOfAlbums()
