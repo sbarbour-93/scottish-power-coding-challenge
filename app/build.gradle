@@ -34,6 +34,18 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    // required for UI tests to run
+    testOptions {
+        packagingOptions {
+            exclude 'META-INF/AL2.0'
+            exclude 'META-INF/LGPL2.1'
+            jniLibs {
+                useLegacyPackaging true
+            }
+        }
+    }
+
 }
 
 dependencies {
@@ -42,16 +54,23 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
+    androidTestImplementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-    // Unit and UI testing libs
+    // Unit testing libs
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'androidx.arch.core:core-testing:2.1.0'
 
+    // UI testing libs
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.4.0'
+    androidTestImplementation 'androidx.test:runner:1.4.0'
+    androidTestImplementation 'androidx.test:rules:1.4.0'
 
+    def fragment_version = "1.4.1"
+    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
 
     // Retrofit for networking
     def retrofit_version = "2.9.0"
@@ -64,6 +83,7 @@ dependencies {
     def coroutines_test_version = "1.5.0"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
 
     // Jetpack navigation
     def nav_version = "2.4.0"
@@ -86,6 +106,7 @@ dependencies {
     // MockK for unit test mocking
     def mock_version = "1.12.2"
     testImplementation "io.mockk:mockk:$mock_version"
+    androidTestImplementation "io.mockk:mockk-android:$mock_version"
 
     // Lottie for animations
     def lottie_version = "4.2.1"
